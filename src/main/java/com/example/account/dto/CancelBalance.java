@@ -1,22 +1,19 @@
 package com.example.account.dto;
 
+import com.example.account.aop.AccountLockIdInterface;
 import com.example.account.type.TransactionResultType;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-public class UseBalance {
+public class CancelBalance {
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class Request {
-        @NotNull
-        @Min(1)
-        private long userId;
+    public static class Request implements AccountLockIdInterface {
+        @NotBlank
+        private String transactionId;
 
         @NotNull
         @Size(min = 10, max = 10)
@@ -46,7 +43,8 @@ public class UseBalance {
                     .transactionResultType(transactionDto.getTransactionResultType())
                     .transactionId(transactionDto.getTransactionId())
                     .amount(transactionDto.getAmount())
-                    .transactedAt(transactionDto.getTransactedAt()).build();
+                    .transactedAt(transactionDto.getTransactedAt())
+                    .build();
         }
     }
 }
