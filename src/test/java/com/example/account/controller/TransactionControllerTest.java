@@ -50,17 +50,16 @@ class TransactionControllerTest {
                         .build());
 
         mockMvc.perform(post("/transaction/use")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(
-                        new UseBalance.Request(1L, "2000000000", 3000L)
-                ))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(
+                                new UseBalance.Request(1L, "2000000000", 3000L)
+                        ))
                 ).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accountNumber").value("1000000000"))
                 .andExpect(jsonPath("$.transactionResultType").value("S"))
                 .andExpect(jsonPath("$.transactionId").value("transactionId"))
                 .andExpect(jsonPath("$.amount").value(12345));
-
     }
 
     @Test
@@ -84,7 +83,6 @@ class TransactionControllerTest {
                 .andExpect(jsonPath("$.transactionResultType").value("S"))
                 .andExpect(jsonPath("$.transactionId").value("transactionIdForCancel"))
                 .andExpect(jsonPath("$.amount").value(54321));
-
     }
 
     @Test
@@ -108,6 +106,5 @@ class TransactionControllerTest {
                 .andExpect(jsonPath("$.transactionResultType").value("S"))
                 .andExpect(jsonPath("$.transactionId").value("transactionIdForCancel"))
                 .andExpect(jsonPath("$.amount").value(54321));
-
     }
 }

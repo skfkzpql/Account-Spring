@@ -3,7 +3,10 @@ package com.example.account.domain;
 import com.example.account.Exception.AccountException;
 import com.example.account.type.AccountStatus;
 import com.example.account.type.ErrorCode;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -25,7 +28,6 @@ public class Account extends BaseEntity {
 
     private LocalDateTime registeredAt;
     private LocalDateTime unRegisteredAt;
-
 
 
     public void useBalance(Long amount) {

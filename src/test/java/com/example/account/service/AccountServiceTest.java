@@ -97,7 +97,8 @@ class AccountServiceTest {
         given(accountUserRepository.findById(anyLong()))
                 .willReturn(Optional.empty());
 
-        AccountException exception = assertThrows(AccountException.class, () -> accountService.createAccount(1L, 1000L));
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.createAccount(1L, 1000L));
 
         assertEquals(ErrorCode.USER_NOT_FOUND, exception.getErrorCode());
     }
@@ -114,7 +115,8 @@ class AccountServiceTest {
         given(accountRepository.countByAccountUser(any()))
                 .willReturn(10);
 
-        AccountException exception = assertThrows(AccountException.class, () -> accountService.createAccount(1L, 1000L));
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.createAccount(1L, 1000L));
 
         assertEquals(ErrorCode.MAX_ACCOUNT_PER_USER_10, exception.getErrorCode());
     }
@@ -149,7 +151,8 @@ class AccountServiceTest {
         given(accountUserRepository.findById(anyLong()))
                 .willReturn(Optional.empty());
 
-        AccountException exception = assertThrows(AccountException.class, () -> accountService.deleteAccount(1L, "1234567890"));
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.deleteAccount(1L, "1234567890"));
 
         assertEquals(ErrorCode.USER_NOT_FOUND, exception.getErrorCode());
     }
@@ -166,7 +169,8 @@ class AccountServiceTest {
         given(accountRepository.findByAccountNumber(any()))
                 .willReturn(Optional.empty());
 
-        AccountException exception = assertThrows(AccountException.class, () -> accountService.deleteAccount(1L, "1234567890"));
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.deleteAccount(1L, "1234567890"));
 
         assertEquals(ErrorCode.ACCOUNT_NOT_FOUND, exception.getErrorCode());
     }
@@ -190,7 +194,8 @@ class AccountServiceTest {
                         .balance(0L)
                         .accountNumber("1000000012").build()));
 
-        AccountException exception = assertThrows(AccountException.class, () -> accountService.deleteAccount(1L, "1234567890"));
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.deleteAccount(1L, "1234567890"));
 
         assertEquals(ErrorCode.USER_ACCOUNT_UN_MATCH, exception.getErrorCode());
     }
@@ -210,7 +215,8 @@ class AccountServiceTest {
                         .balance(1L)
                         .accountNumber("1000000012").build()));
 
-        AccountException exception = assertThrows(AccountException.class, () -> accountService.deleteAccount(1L, "1234567890"));
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.deleteAccount(1L, "1234567890"));
 
         assertEquals(ErrorCode.BALANCE_NOT_EMPTY, exception.getErrorCode());
     }
@@ -231,7 +237,8 @@ class AccountServiceTest {
                         .balance(0L)
                         .accountNumber("1000000012").build()));
 
-        AccountException exception = assertThrows(AccountException.class, () -> accountService.deleteAccount(1L, "1234567890"));
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.deleteAccount(1L, "1234567890"));
 
         assertEquals(ErrorCode.ACCOUNT_ALREADY_UNREGISTERED, exception.getErrorCode());
     }

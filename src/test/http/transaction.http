@@ -17,6 +17,7 @@ Content-Type: application/json
   "accountNumber": "1000000000",
   "amount": 100
 }
+
 ### cancel balance
 POST http://localhost:8080/transaction/cancel
 Content-Type: application/json

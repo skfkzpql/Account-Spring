@@ -70,7 +70,10 @@ public class TransactionService {
         }
     }
 
-    private Transaction saveAndGetTransaction(TransactionType transactionType, TransactionResultType transactionResultType, Account account, Long amount) {
+    private Transaction saveAndGetTransaction(TransactionType transactionType,
+                                              TransactionResultType transactionResultType,
+                                              Account account,
+                                              Long amount) {
         return transactionRepository.save(Transaction.builder()
                 .transactionType(transactionType)
                 .transactionResultType(transactionResultType)
