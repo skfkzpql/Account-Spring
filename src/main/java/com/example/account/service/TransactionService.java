@@ -92,7 +92,7 @@ public class TransactionService {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new AccountException(ErrorCode.ACCOUNT_NOT_FOUND));
 
-        Transaction transaction = saveAndGetTransaction(USE, F, account, amount);
+        saveAndGetTransaction(USE, F, account, amount);
     }
 
     @Transactional
